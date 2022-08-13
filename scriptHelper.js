@@ -31,7 +31,7 @@ function validateInput(testInput) {
        const h2 = document.getElementById('launchStatus');
        //input validation 
         if(validateInput(pilot.value) !== "Not a Number" ||validateInput(copilot.value) !== "Not a Number" || validateInput(fuelLevel.value) !== "Is a Number" || validateInput(cargoLevel.value) !== "Is a Number"){
-            alert("please enter valid info")
+            window.alert("please enter valid info")
             return "submit aborted";
         } else {
             let readyStatus= "yes";
@@ -43,7 +43,7 @@ function validateInput(testInput) {
                 h2.style.color = "red";
                 h2.innerHTML = `Shuttle not ready for launch`;
                 readyStatus="no";
-                alert("not enough fuel!");
+                window.alert("not enough fuel!");
             };
             if(cargoLevel.value>10000){
                 list.style.visibility = "visible";
@@ -51,7 +51,7 @@ function validateInput(testInput) {
                 h2.style.color = "red";
                 h2.innerHTML = `Shuttle not ready for launch`;
                 readyStatus="no";
-                alert("too heavy!");
+                window.alert("too heavy!");
             };
             if(readyStatus==="yes"){
                 h2.style.color = "green";
@@ -59,7 +59,7 @@ function validateInput(testInput) {
                 pilotLi.innerHTML = `Pilot ${pilot.value} is ready for launch`;
                 copilotLi.innerHTML = `Pilot ${copilot.value} is ready for launch`;
                 list.style.visibility = "hidden";
-                alert("LIFT OFF!");
+                window.alert("LIFT OFF!");
             };console.log(readyStatus);
         };
     }
