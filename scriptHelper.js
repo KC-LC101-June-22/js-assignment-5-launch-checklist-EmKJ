@@ -34,7 +34,7 @@ function validateInput(testInput) {
             validateInput(fuelLevel.value) !== "Is a Number" || 
             validateInput(cargoLevel.value) !== "Is a Number"){
             alert("please enter valid info");
-            return "submit aborted";
+            // return "submit aborted";
         } else {
             let readyStatus= "yes";
             //default successful form:
