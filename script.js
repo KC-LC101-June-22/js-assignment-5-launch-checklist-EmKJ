@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
         if(pilotName.value === "" || copilotName.value === "" ||fuelLevel.value === "" ||cargoMass.value === "") {
             alert("Missing input: All fields required!")
         }else{
-        formSubmission(document, list, pilotName, copilotName, fuelLevel, cargoMass)
+        formSubmission(window.document, list, pilotName, copilotName, fuelLevel, cargoMass)
         }
     });
 
