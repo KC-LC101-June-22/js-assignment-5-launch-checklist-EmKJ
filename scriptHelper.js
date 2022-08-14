@@ -33,7 +33,7 @@ function validateInput(testInput) {
             validateInput(copilot.value) !== "Not a Number" || 
             validateInput(fuelLevel.value) !== "Is a Number" || 
             validateInput(cargoLevel.value) !== "Is a Number"){
-            alert("please enter valid info")
+            form.alert("please enter valid info")
             return "submit aborted";
         } else {
             let readyStatus= "yes";
