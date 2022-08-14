@@ -3,17 +3,16 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
     const missionTarget = document.getElementById('missionTarget');
-   // Here is the HTML formatting for our mission target div.
-//    missionTarget.innerHTML = `        <h2>Mission Destination</h2>
-//                 <ol>
-//                     <li>Name: </li>
-//                     <li>Diameter: </li>
-//                     <li>Star: ${star}</li>
-//                     <li>Distance from Earth: </li>
-//                     <li>Number of Moons: </li>
-//                 </ol>
-//                 <img src="">
-//    `
+//    Here is the HTML formatting for our mission target div.
+   missionTarget.innerHTML = `<h2>Mission Destination</h2>
+                <ol>
+                    <li>Name: ${name}</li>
+                    <li>Diameter: ${diameter} km</li>
+                    <li>Star: ${star}</li>
+                    <li>Distance from Earth: ${distance} light years from Earth</li>
+                    <li>Number of Moons: ${moons}</li>
+                </ol>
+                <img src="${imageUrl}">`
 }
 
 function validateInput(testInput) {
@@ -30,12 +29,17 @@ function validateInput(testInput) {
        const cargoLi = document.getElementById('cargoStatus');
        const h2 = document.getElementById('launchStatus');
        //input validation 
-        if(validateInput(pilot.value) !== "Not a Number" ||validateInput(copilot.value) !== "Not a Number" || validateInput(fuelLevel.value) !== "Is a Number" || validateInput(cargoLevel.value) !== "Is a Number"){
+        if(validateInput(pilot.value) !== "Not a Number" ||
+            validateInput(copilot.value) !== "Not a Number" || 
+            validateInput(fuelLevel.value) !== "Is a Number" || 
+            validateInput(cargoLevel.value) !== "Is a Number"){
             window.alert("please enter valid info")
             return "submit aborted";
         } else {
             let readyStatus= "yes";
             //default successful form:
+            pilotLi.innerHTML = `Pilot ${pilot.value} is ready for launch`;
+            copilotLi.innerHTML = `Pilot ${copilot.value} is ready for launch`;
             //Exceptions
             if(fuelLevel.value<10000){
                 list.style.visibility = "visible";
@@ -43,7 +47,7 @@ function validateInput(testInput) {
                 h2.style.color = "red";
                 h2.innerHTML = `Shuttle not ready for launch`;
                 readyStatus="no";
-                window.alert("not enough fuel!");
+                // window.alert("not enough fuel!");
             };
             if(cargoLevel.value>10000){
                 list.style.visibility = "visible";
@@ -51,33 +55,28 @@ function validateInput(testInput) {
                 h2.style.color = "red";
                 h2.innerHTML = `Shuttle not ready for launch`;
                 readyStatus="no";
-                window.alert("too heavy!");
+                // window.alert("too heavy!");
             };
             if(readyStatus==="yes"){
+                list.style.visibility = "hidden";
                 h2.style.color = "green";
                 h2.innerHTML = `Shuttle is ready for launch`;
-                pilotLi.innerHTML = `Pilot ${pilot.value} is ready for launch`;
-                copilotLi.innerHTML = `Pilot ${copilot.value} is ready for launch`;
-                list.style.visibility = "hidden";
-                window.alert("LIFT OFF!");
-            };console.log(readyStatus);
+                // window.alert("LIFT OFF!");
+            };
+            //console.log(readyStatus);
         };
     }
 
 async function myFetch() {
     let planetsReturned;
-
-    planetsReturned = await fetch().then( function(response) {
+    planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
+        return response.json(planetsReturned);
         });
-
     return planetsReturned;
 }
 
 function pickPlanet(planets) {
+    
 }
 
-module.exports.addDestinationInfo = addDestinationInfo;
-module.exports.validateInput = validateInput;
-module.exports.formSubmission = formSubmission;
-module.exports.pickPlanet = pickPlanet; 
-module.exports.myFetch = myFetch;
+module.exports = { addDestinationInfo, validateInput, formSubmission, pickPlanet, myFetch};
