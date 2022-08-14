@@ -7,9 +7,9 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
    missionTarget.innerHTML = `<h2>Mission Destination</h2>
                 <ol>
                     <li>Name: ${name}</li>
-                    <li>Diameter: ${diameter} km</li>
+                    <li>Diameter: ${diameter}</li>
                     <li>Star: ${star}</li>
-                    <li>Distance from Earth: ${distance} light years from Earth</li>
+                    <li>Distance from Earth: ${distance}</li>
                     <li>Number of Moons: ${moons}</li>
                 </ol>
                 <img src=${imageUrl}>`
@@ -33,7 +33,7 @@ function validateInput(testInput) {
             validateInput(copilot.value) !== "Not a Number" || 
             validateInput(fuelLevel.value) !== "Is a Number" || 
             validateInput(cargoLevel.value) !== "Is a Number"){
-            window.alert("please enter valid info")
+            alert("please enter valid info")
             return "submit aborted";
         } else {
             let readyStatus= "yes";
