@@ -12,7 +12,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                     <li>Distance from Earth: ${distance} light years from Earth</li>
                     <li>Number of Moons: ${moons}</li>
                 </ol>
-                <img src="${imageUrl}">`
+                <img src=${imageUrl}>`
 }
 
 function validateInput(testInput) {
@@ -76,7 +76,9 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
-    
+    random = Math.floor(Math.random()*planets.length);
+    console.log(random);
+    return planets[random];
 }
 
 module.exports = { addDestinationInfo, validateInput, formSubmission, pickPlanet, myFetch};
